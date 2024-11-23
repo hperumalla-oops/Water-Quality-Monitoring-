@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Water Quality Information - Kengeri</title>
+</head>
+<script>
+      const pHValue = 9.2;
+  const turbidityValue = 3.5;
+  const tdsValue = 250;
+
+  // Set the values to the HTML elements
+  document.getElementById('pHValue').textContent = pHValue.toFixed(2);
+  document.getElementById('turbidityValue').textContent = turbidityValue.toFixed(2);
+  document.getElementById('tdsValue').textContent = tdsValue.toFixed(2);
+
+  document.getElementById('pHTableValue').textContent = pHValue.toFixed(2);
+  document.getElementById('turbidityTableValue').textContent = turbidityValue.toFixed(2);
+  document.getElementById('tdsTableValue').textContent = tdsValue.toFixed(2);
+
+  // Define acceptable ranges
+  const pHAcceptableRange = {
+    min: 6,
+    max: 8
+  };
+  const turbidityAcceptableRange = {
+    min: 0,
+    max: 5
+  };
+  const tdsAcceptableRange = {
+    min: 0,
+    max: 500
+  };
+
+  // Highlight values based on their ranges
+  const highlightValue = (elementId, value, acceptableRange) => {
+    const element = document.getElementById(elementId);
+
+    if (value < acceptableRange.min || value > acceptableRange.max) {
+      element.classList.add('high-value');
+      alert(elementId +' is out of acceptable range!!');
+    } else {
+      element.classList.add('acceptable-value');
+    }
+  };
+
+  highlightValue('pHValue', pHValue, pHAcceptableRange);
+  highlightValue('turbidityValue', turbidityValue, turbidityAcceptableRange);
+  highlightValue('tdsValue', tdsValue, tdsAcceptableRange);
+
+</script>
+<style>
+    body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f5f5;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            width: 80%;
+            max-width: 600px;
+            margin: auto;
+        }
+
+        header {
+            background-color: #4CAF50;
+            color: #fff;
+            text-align: center;
+            padding: 20px 0;
+            font-size: 24px;
+        }
+
+        .columns {
+            display: flex;
+            justify-content: space-around;
+            padding: 20px;
+        }
+
+        .column {
+            flex: 1;
+            text-align: center;
+            padding: 20px;
+        }
+
+        h2 {
+            font-size: 1.5em;
+        }
+
+        .value {
+            font-size: 2em;
+            margin-top: 10px;
+        }
+
+        .range {
+            font-size: 0.8em;
+            margin-top: 5px;
+        }
+
+        table {
+            width: 100%;
+            margin-top: 20px;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: center;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        .high-value {
+            color: red;
+            font-weight: bold;
+        }
+
+        .acceptable-value {
+            color: green;
+        }
+</style>
+<body>
+    <div class="container">
+        <header>Water Quality Information for Kengeri</header>
+
+        <div class="columns">
+            <div class="column">
+                <h2>pH</h2>
+                <div id="pHValue" class="value"></div>
+                <div id="pHRange" class="range">Acceptable Range: 6 - 8</div>
+            </div>
+            <div class="column">
+                <h2>Turbidity</h2>
+                <div id="turbidityValue" class="value"></div>
+                <div id="turbidityRange" class="range">Acceptable Range: 0 - 5 NTU</div>
+            </div>
+            <div class="column">
+                <h2>TDS</h2>
+                <div id="tdsValue" class="value"></div>
+                <div id="tdsRange" class="range">Acceptable Range: 0 - 500 ppm</div>
+            </div>
+        </div>
+
+        <table>
+            <tr>
+                <th>Parameter</th>
+                <th>Value</th>
+                <th>Acceptable Range</th>
+            </tr>
+            <tr>
+                <td>pH</td>
+                <td id="pHTableValue"></td>
+                <td>6 - 8</td>
+            </tr>
+            <tr>
+                <td>Turbidity</td>
+                <td id="turbidityTableValue"></td>
+                <td>0 - 5 NTU</td>
+            </tr>
+            <tr>
+                <td>TDS</td>
+                <td id="tdsTableValue"></td>
+                <td>0 - 500 ppm</td>
+            </tr>
+        </table>
+    </div>
+ </body>
